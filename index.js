@@ -20,7 +20,11 @@ async function run() {
         const userCollection = client.db('Mission').collection('users');
         const taskCollection = client.db('Mission').collection('tasks');
 
-        
+        app.post('/tasks', async(req, res) => {
+            const task = req.body;
+            const result = await taskCollection.insertOne(task);
+            res.send(result)
+        })
            //  Get User Information 
 
            app.get('/users', async(req, res) => {
